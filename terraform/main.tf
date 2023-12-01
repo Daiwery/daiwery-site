@@ -13,6 +13,7 @@ variable "CLOUD_ID" { type = string }
 variable "FOLDER_ID" { type = string }
 variable "ZONE" { type = string }
 variable "SERVICE_ACCOUNT_ID" { type = string }
+variable "DOMEN" { type = string }
 
 provider "yandex" { 
   token     = var.TOKEN
