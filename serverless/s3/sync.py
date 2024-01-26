@@ -52,7 +52,7 @@ for key in to_delete:
 
 to_upload = tqdm(to_upload, desc="Upload")
 for key in to_upload:
-    to_delete.set_description(f"Upload ({key})")
+    to_upload.set_description(f"Upload ({key})")
 
     path = Path(args.new).joinpath(key)
     content_type = mimetypes.guess_type(str(key))[0]
