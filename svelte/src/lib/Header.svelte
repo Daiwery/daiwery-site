@@ -6,9 +6,9 @@
         <li>
             <a href="/">Курс</a>
         </li>
-        <li>
+        <!-- <li>
             <a href="/">Обо мне</a>
-        </li>
+        </li> -->
     </ul>
 
     <div id="brand">
@@ -21,12 +21,14 @@
         <img src="github_icon.svg" alt="Github." />
     </div>
 </nav>
+<div class="h-line" />
 
 <style>
     nav {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        margin: 1rem 4rem 1rem 4rem;
+        padding: 1rem 4rem 1rem 4rem;
+        backdrop-filter: blur(5px);
     }
 
     ul {
@@ -66,4 +68,10 @@
         padding: 0 0.6rem;
         filter: invert(1);
     }
+
+    .h-line {
+		width: 100%;
+		height: 1px;
+		background-color: rgb(64, 64, 64);
+	}
 </style>

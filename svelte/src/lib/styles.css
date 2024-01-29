@@ -1,7 +1,7 @@
 @import '@fontsource/fira-mono';
 @import '@fontsource-variable/caveat';
 
-:root {
+body {
     color: white;
     background-color: black;
     font-family: "Fira Mono";
@@ -11,4 +11,5 @@
     right: 0;
     top: 0;
     margin: 0;
+    padding: 0;
 }

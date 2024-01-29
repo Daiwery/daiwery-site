@@ -1,113 +1,84 @@
 <script>
 	import "$lib/styles.css";
-    import Header from "$lib/Header.svelte";
+	import Header from "$lib/Header.svelte";
 </script>
 
-<div id="body">
-	<!-- <img src="main-gradient-1.png" alt="The gradient." id="first-gradient" /> -->
-	<div id="first-page">
-		<Header/>
-		<div class="h-line" />
+<div id="first-section">
+	<div id="header"><Header /></div>
 
-		<div id="slogan">
-			<p>Если ты можешь это представить, ты можешь это достичь.</p>
-		</div>
+	<p id="slogan">Если ты можешь это представить, ты можешь это достичь.</p>
 
-		<ul id="topics-about">
-			<li>
-				<p>Наука</p>
-			</li>
-			<li>
-				<p>Программирование</p>
-			</li>
-			<li>
-				<p>Блог</p>
-			</li>
-		</ul>
-	</div>
-
-	<div>
-		<div class="h-line" />
-
-		<!-- <img
-			src="main-gradient-2.png"
-			alt="The gradient."
-			id="second-gradient"
-		/> -->
-
-		<p id="about" lang="ru">
-			Привет, дорогой читатель. Меня зовут Андрей. Мне 22 года, я студент,
-			которому интересно познавать новое и делиться этим с другими. Это
-			мой личный сайт, на котором я выкладываю свои статьи, иногда курсы,
-			блоги и просто размышления на интересные для меня темы. Заваривай
-			чай и присаживайся поудобнее.
-		</p>
-
-		<div class="h-line" />
-
-		<h1>Новости и обновления</h1>
-
-		<div id="python">
-			<h2>Вышел курс python!</h2>
-			<p>Python - это мощный язык программирования.</p>
-		</div>
-	</div>
-	
-	<footer>
-		<p>
-			Политика конфиденциальности
-		</p>
-		<p>
-			@2024 Все права защищены
-		</p>
-	</footer>
+	<ul>
+		<li>
+			<p>Наука</p>
+		</li>
+		<li>
+			<p>Программирование</p>
+		</li>
+		<li>
+			<p>Блог</p>
+		</li>
+	</ul>
 </div>
 
+<div class="h-line" />
+<div id="second-section">
+	<p id="about" lang="ru">
+		Привет, дорогой читатель. Меня зовут Андрей. Мне 22 года, я студент,
+		которому интересно познавать новое и делиться этим с другими. Это мой
+		личный сайт, на котором я выкладываю свои статьи, иногда курсы, блоги и
+		просто размышления на интересные для меня темы. Заваривай чай и
+		присаживайся поудобнее.
+	</p>
+</div>
+<div class="h-line" />
+
+<div>
+	<h1>Новости и обновления</h1>
+
+	<div id="python">
+		<h2>Вышел курс python!</h2>
+		<p>Python - это мощный язык программирования.</p>
+	</div>
+</div>
+
+<footer>
+	<p>Политика конфиденциальности</p>
+	<p>@2024 Все права защищены</p>
+</footer>
+
 <style>
-	#body {
-		padding: 0;
-		margin: 0;
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		margin: 0;
-	}
-
-	#first-page {
-		height: 100dvh;
-		position: relative;
-	}
-
-	#first-gradient {
-		right: 0;
-		top: 0;
-		width: 60%;
-		z-index: -1;
-		position: absolute;
-	}
-
 	.h-line {
 		width: 100%;
 		height: 1px;
 		background-color: rgb(64, 64, 64);
 	}
 
-	#slogan {
-		position: absolute;
-		top: 30%;
-		font-size: 4rem;
+	#header {
+		position: fixed;
+		top: 0;
 		width: 100%;
-		text-align: center;
+		z-index: 1;
 	}
 
-	#slogan p {
+	#first-section {
+		height: 100vh;
+		position: relative;
+		background: linear-gradient(45deg, black, rgb(25, 25, 25));
+	}
+
+	#first-section #slogan {
+		position: absolute;
+		top: 30%;
+		width: 100%;
 		margin: 0;
 		font-family: "Caveat Variable";
 		line-height: 3rem;
+		font-size: 4rem;
+		text-align: center;
 	}
 
-	#topics-about {
+	#first-section ul {
 		display: flex;
 		list-style: none;
 		position: absolute;
@@ -119,25 +90,31 @@
 		font-family: "Caveat Variable";
 	}
 
-	#topics-about p {
-		padding: 0 0.5rem;
-		margin-right: 1rem;
+	#first-section ul p {
+		padding: 0 1rem;
 		font-size: 1.3rem;
 		color: rgb(158, 158, 158);
 	}
 
-	#second-gradient {
-		left: 0;
-		z-index: -2;
-		position: absolute;
-		width: 50%;
+	#second-section {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	#about {
-		font-size: 1.5rem;
+	#second-section #about {
+		font-size: 2rem;
 		text-align: justify;
 		hyphens: auto;
+		width: 50%;
+		margin-top: 10%;
+		margin-bottom: 10%;
+		border: 2px solid rgb(64, 64, 64);
+		border-radius: 3rem;
+		padding: 2rem;
+		font-family: "Caveat Variable";
 	}
+
 
 	h1 {
 		font-size: 2rem;
@@ -148,11 +125,6 @@
 		border-radius: 40px;
 		padding-left: 2%;
 	}
-
-
-	/* #contacts {
-		margin-bottom: 2rem;
-	} */
 
 	footer p {
 		text-align: center;
