@@ -1,4 +1,4 @@
-# Daiwery-site
+# daiwery-site
 Репозиторий с исходным кодом сайта автора.
 
 ## Terraform

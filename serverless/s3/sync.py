@@ -56,9 +56,11 @@ for key in to_upload:
 
     path = Path(args.new).joinpath(key)
     content_type = mimetypes.guess_type(str(key))[0]
-    s3.upload_file(path, args.bucket, str(key), ExtraArgs={
-                   "ContentType": content_type})
-    
+    s3.upload_file(
+        path, args.bucket, str(key),
+        ExtraArgs={"ContentType": content_type}
+    )
+
 os.system(f"rm -r {args.old}")
 os.system(f"cp -r {args.new} {args.old}")
 print("Delete and copy!")

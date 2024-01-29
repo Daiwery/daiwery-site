@@ -1,4 +1,7 @@
 import boto3
+import sys
+import threading
+import os
 
 
 def get_s3(profile):
@@ -12,12 +15,28 @@ def get_s3(profile):
 
 
 def get_bucket(s3, bucket):
-    buckets = s3.list_buckets()["Buckets"]
     if bucket == "":
+        buckets = s3.list_buckets()["Buckets"]
         if len(buckets) != 1:
             raise ValueError("Count of buckets is not equal 1")
         bucket = buckets[0]["Name"]
-    else:
-        if bucket not in [i["Name"] for i in buckets]:
-            raise ValueError(f"Bucket '{bucket}' does not exist")
     return bucket
+
+
+class ProgressUploadPercentage(object):
+    def __init__(self, filename):
+        self._filename = filename
+        self._size = float(os.path.getsize(filename))
+        self._seen_so_far = 0
+        self._lock = threading.Lock()
+
+    def __call__(self, bytes_amount):
+        # To simplify, assume this is hooked up to a single filename
+        with self._lock:
+            self._seen_so_far += bytes_amount
+            percentage = (self._seen_so_far / self._size) * 100
+            s = "\r%s  %s / %s  (%.2f%%)" % (
+                self._filename, self._seen_so_far, int(self._size), percentage
+            )
+            sys.stdout.write(s)
+            sys.stdout.flush()
