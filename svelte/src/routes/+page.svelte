@@ -46,11 +46,11 @@
 			<img src="test.png" class="item-img" alt="test" />
 			<div class="wrap-item-text">
 				<div class="item-text">
-					<h2>
-						New! Раскрой свои навыки программирования на этом
-						бесплатном курсе по Python
+					<h2 lang="ru">
+						Раскрой свои навыки программирования на этом бесплатном
+						курсе по Python
 					</h2>
-					<p>
+					<p lang="ru">
 						Python - это мощный язык программирования, находящий
 						свое применение в web-разработке, в научных вычислениях,
 						как скриптовый язык и в других самых разных областях.
@@ -58,9 +58,9 @@
 						является одним из самых популярных и востребованных
 						языков в современном IT.
 					</p>
-					<div class="item-link"> 
+					<div class="item-link">
 						<a href="/">Перейти</a>
-						<img src="right_arrow_icon.svg" alt="The right arrow"/>
+						<img src="right_arrow_icon.svg" alt="The right arrow" />
 					</div>
 				</div>
 			</div>
@@ -142,19 +142,19 @@
 		font-size: 2rem;
 		text-align: justify;
 		hyphens: auto;
-		width: 50%;
-		margin-top: 10%;
-		margin-bottom: 10%;
+		max-width: 35rem;
 		border: 2px solid rgb(64, 64, 64);
 		border-radius: 3rem;
-		padding: 2rem;
+		padding: 1rem;
 		font-family: "Caveat Variable";
+		margin: 5rem 1rem 5rem 1rem;
 	}
 
 	.wrapper-main-item {
 		display: flex;
 		justify-content: center;
 		width: auto;
+		max-width: 80rem;
 		margin: 3rem 2rem;
 	}
 
@@ -179,16 +179,37 @@
 		font-size: 1.8rem;
 		font-weight: bold;
 		margin-top: 0;
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 	}
 
 	.main-item .item-text p {
 		font-size: 1.3rem;
 		color: rgb(140, 140, 140);
 		margin-top: 0;
-		margin-bottom: 2rem;
+		margin-bottom: 1rem;
 		text-align: justify;
 		hyphens: auto;
+	}
+
+	@media (max-width: 75rem) {
+		.main-item .item-text h2 {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (max-width: 71rem) {
+		.main-item .item-text h2 {
+			margin-top: 1rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.main-item {
+			grid-template-columns: none;
+		}
+
+		.main-item .item-text p {
+			margin-bottom: 0.5rem;
+		}
 	}
 
 	.main-item .item-text .item-link {
@@ -210,8 +231,7 @@
 	.main-item .item-text .item-link img {
 		width: 1rem;
 		filter: invert(1);
-		margin-left: .25rem;
+		margin-left: 0.25rem;
 		padding-top: 0.2rem;
 	}
-
 </style>

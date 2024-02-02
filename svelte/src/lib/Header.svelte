@@ -7,7 +7,7 @@
 
     <ul>
         <li>
-            <a href="/">Блог</a>
+            <a href="/" class="first-child">Блог</a>
         </li>
         <li>
             <a href="/">Курс</a>
@@ -25,11 +25,21 @@
         backdrop-filter: blur(5px);
     }
 
+    @media (max-width: 35rem) {
+        nav {
+            padding: 1rem 1rem 1rem 1rem;
+        }
+    }
+
     ul {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         list-style: none;
+        padding: 0;
+    }
+
+    ul a.first-child {
         padding: 0;
     }
 

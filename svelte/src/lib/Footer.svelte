@@ -1,5 +1,5 @@
 <footer>
-	<a id="privacy" href="/">Политика конфиденциальности</a>
+    <a id="privacy" href="/">Политика конфиденциальности</a>
     <p id="copyright">Все права защищены © 2024 Daiwery</p>
     <div id="contacts">
         <img src="telegram_icon.svg" alt="Telegram." />
@@ -7,7 +7,6 @@
         <img src="github_icon.svg" alt="Github." />
     </div>
 </footer>
-
 
 <style>
     footer {
@@ -34,7 +33,7 @@
     }
 
     #contacts img {
-        width: 1.3rem;
+        width: 1.5rem;
         padding: 0 1.2rem 0 0;
         filter: invert(1);
     }
@@ -44,5 +43,28 @@
         color: rgb(140, 140, 140);
         text-align: center;
         margin: 0;
+    }
+
+    @media (max-width: 54rem) {
+        footer {
+            grid-template-columns: none;
+            margin: 1rem 2rem 1rem 2rem;
+        }
+
+        #privacy {
+            text-align: center;
+            order: 2;
+            margin-bottom: 0.1rem;
+        }
+
+        #contacts {
+            justify-content: center;
+            order: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        #copyright {
+            order: 3;
+        }
     }
 </style>
