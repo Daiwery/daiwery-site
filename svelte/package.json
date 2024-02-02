@@ -22,6 +22,6 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource-variable/caveat": "^5.0.16",
-		"@fontsource/fira-mono": "^5.0.8"
+		"@fontsource/source-sans-pro": "^5.0.8"
 	}
 }

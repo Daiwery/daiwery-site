@@ -1,10 +1,17 @@
 <script>
 	import "$lib/styles.css";
 	import Header from "$lib/Header.svelte";
+	import Footer from "$lib/Footer.svelte";
 </script>
 
 <div id="first-section">
-	<div id="header"><Header /></div>
+	<div id="header">
+		<Header>
+			<div id="wrap-title">
+				<a href="/" id="title">Daiwery</a>
+			</div>
+		</Header>
+	</div>
 
 	<p id="slogan">Если ты можешь это представить, ты можешь это достичь.</p>
 
@@ -31,21 +38,38 @@
 		присаживайся поудобнее.
 	</p>
 </div>
+
 <div class="h-line" />
-
-<div>
-	<h1>Новости и обновления</h1>
-
-	<div id="python">
-		<h2>Вышел курс python!</h2>
-		<p>Python - это мощный язык программирования.</p>
+<div id="third-section">
+	<div class="wrapper-main-item">
+		<div class="main-item">
+			<img src="test.png" class="item-img" alt="test" />
+			<div class="wrap-item-text">
+				<div class="item-text">
+					<h2>
+						New! Раскрой свои навыки программирования на этом
+						бесплатном курсе по Python
+					</h2>
+					<p>
+						Python - это мощный язык программирования, находящий
+						свое применение в web-разработке, в научных вычислениях,
+						как скриптовый язык и в других самых разных областях.
+						Этот язык невероятно удобен и лаконичен, и поэтому
+						является одним из самых популярных и востребованных
+						языков в современном IT.
+					</p>
+					<div class="item-link"> 
+						<a href="/">Перейти</a>
+						<img src="right_arrow_icon.svg" alt="The right arrow"/>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
-<footer>
-	<p>Политика конфиденциальности</p>
-	<p>@2024 Все права защищены</p>
-</footer>
+<div class="h-line" />
+<Footer />
 
 <style>
 	.h-line {
@@ -59,6 +83,18 @@
 		top: 0;
 		width: 100%;
 		z-index: 1;
+	}
+
+	#wrap-title {
+		display: flex;
+		align-items: center;
+	}
+
+	#title {
+		color: rgb(255, 255, 255);
+		font-size: 2.5rem;
+		text-decoration: none;
+		font-family: "Caveat Variable";
 	}
 
 	#first-section {
@@ -115,20 +151,67 @@
 		font-family: "Caveat Variable";
 	}
 
-
-	h1 {
-		font-size: 2rem;
+	.wrapper-main-item {
+		display: flex;
+		justify-content: center;
+		width: auto;
+		margin: 3rem 2rem;
 	}
 
-	#python {
-		border: 3px solid hotpink;
-		border-radius: 40px;
-		padding-left: 2%;
+	.main-item {
+		display: grid;
+		justify-content: center;
+		grid-template-columns: 1fr 1fr;
+		column-gap: 2rem;
 	}
 
-	footer p {
-		text-align: center;
-		font-size: 1rem;
+	.main-item .item-img {
+		width: 100%;
+		border-radius: 1rem;
+	}
+
+	.main-item .wrap-item-text {
+		display: flex;
+		align-items: center;
+	}
+
+	.main-item .item-text h2 {
+		font-size: 1.8rem;
+		font-weight: bold;
+		margin-top: 0;
+		margin-bottom: 2rem;
+	}
+
+	.main-item .item-text p {
+		font-size: 1.3rem;
+		color: rgb(140, 140, 140);
+		margin-top: 0;
+		margin-bottom: 2rem;
+		text-align: justify;
+		hyphens: auto;
+	}
+
+	.main-item .item-text .item-link {
+		display: flex;
+		align-items: center;
+	}
+
+	.main-item .item-text .item-link a {
+		color: rgb(255, 255, 255);
+		font-size: 1.3rem;
+		text-decoration: none;
 		margin: 0;
 	}
+
+	.main-item .item-text .item-link a:hover {
+		text-decoration: underline;
+	}
+
+	.main-item .item-text .item-link img {
+		width: 1rem;
+		filter: invert(1);
+		margin-left: .25rem;
+		padding-top: 0.2rem;
+	}
+
 </style>
