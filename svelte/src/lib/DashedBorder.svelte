@@ -20,13 +20,13 @@
 		&::before {
 			background-image: linear-gradient(var(--bottom-gradient));
 			background-position: bottom;
-			background-size: 100% var(--bottom-width);
+			background-size: 100% calc(var(--bottom-width) + 2px);
 			background-repeat: repeat-x;
 			content: "";
 			position: absolute;
 			top: 0;
 			right: 0;
-			bottom: 0;
+			bottom: -1px;
 			left: 0;
 		}
 	}
@@ -42,7 +42,7 @@
 		&::before {
 			background-image: linear-gradient(var(--top-gradient));
 			background-position: top;
-			background-size: 100% var(--top-width);
+			background-size: 100% calc(var(--top-width) + 1px);
 			background-repeat: repeat-x;
 			content: "";
 			position: absolute;
@@ -65,7 +65,7 @@
 		&::before {
 			background-image: linear-gradient(var(--left-gradient));
 			background-position: left;
-			background-size: var(--left-width) 100%;
+			background-size: calc(var(--left-width) + 1px) 100%;
 			background-repeat: repeat-y;
 			content: "";
 			position: absolute;
@@ -88,7 +88,7 @@
 		&::before {
 			background-image: linear-gradient(var(--right-gradient));
 			background-position: right;
-			background-size: var(--right-width) 100%;
+			background-size: calc(var(--right-width) + 1px) 100%;
 			background-repeat: repeat-y;
 			content: "";
 			position: absolute;
