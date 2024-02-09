@@ -7,7 +7,7 @@
 
     <ul>
         <li>
-            <a href="/" class="first-child">Блог</a>
+            <a href="/">Блог</a>
         </li>
         <li>
             <a href="/">Курс</a>
@@ -39,10 +39,6 @@
         padding: 0;
     }
 
-    ul a.first-child {
-        padding: 0;
-    }
-
     ul a {
         padding: 0 0 0 2rem;
         color: rgb(205, 205, 205);
@@ -69,6 +65,6 @@
     .h-line {
 		width: 100%;
 		height: 1px;
-		background-color: rgb(64, 64, 64);
+		background-color: var(--solid-line-color);
 	}
 </style>

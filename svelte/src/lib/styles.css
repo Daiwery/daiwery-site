@@ -2,8 +2,16 @@
 @import '@fontsource/source-sans-pro';
 
 body {
+    --background-color: black;
+    --solid-line-color: rgb(64, 64, 64);
+    --dashed-line-color: rgb(128, 128, 128);
+
+    --dash: var(--dashed-line-color) 50%, rgba(255, 255, 255, 0) 50%;
+    --dash-period: 5px;
+    --dash-width: 1px;
+
     color: white;
-    background-color: black;
+    background-color: var(--background-color);
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     position: absolute;
