@@ -2,9 +2,9 @@
 @import '@fontsource/source-sans-pro';
 
 body {
-    --background-color: black;
+    --background-color: rgba(0, 0, 0, 1);
     --solid-line-color: rgb(64, 64, 64);
-    --dashed-line-color: rgb(128, 128, 128);
+    --dashed-line-color: var(--solid-line-color);
 
     --dash: var(--dashed-line-color) 50%, rgba(255, 255, 255, 0) 50%;
     --dash-period: 5px;
