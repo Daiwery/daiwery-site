@@ -1,25 +1,27 @@
 <script>
-	import DashedBorder from "./DashedBorder.svelte";
-
 	export let src = "";
 	export let alt = "";
 </script>
 
 <div class="wrapper-main-item">
-	<DashedBorder>
-		<div class="main-item">
-			<img {src} class="item-img" {alt} />
-			<div class="wrap-item-text">
-				<div class="item-text">
-					<slot />
-					<div class="item-link">
-						<a href="/">Перейти</a>
-						<img src="right_arrow_icon.svg" alt="The right arrow" />
-					</div>
+	<svg>
+		<line x1="0" x2="5rem" y1="0" y2="0" />
+		<line x1="0" x2="0" y1="0" y2="5rem" />
+		<line x1="100%" x2="calc(100% - 10rem)" y1="100%" y2="100%" style="stroke-width: 2px"/>
+		<line x1="100%" x2="100%" y1="100%" y2="calc(100% - 10rem)" />
+	</svg>
+	<div class="main-item">
+		<img {src} class="item-img" {alt} />
+		<div class="wrap-item-text">
+			<div class="item-text">
+				<slot />
+				<div class="item-link">
+					<a href="/">Перейти</a>
+					<img src="right_arrow_icon.svg" alt="The right arrow" />
 				</div>
 			</div>
 		</div>
-	</DashedBorder>
+	</div>
 </div>
 
 <style>
@@ -29,35 +31,24 @@
 		width: auto;
 		max-width: 80rem;
 		margin: 1.5rem 1rem;
+		position: relative;
+	}
 
-		--length-1: 5rem;
-		--length-2: 10rem;
+	svg {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		width: 100%;
+	}
 
-		--left-dash: to bottom, var(--dash);
-		--left-period: var(--dash-period);
-		--left-width: var(--dash-width);
-		--left-gradient: to bottom, rgba(0, 0, 0, 0) 0,
-			rgba(0, 0, 0, 0) var(--length-1),
-			var(--background-color) var(--length-1);
-		--top-dash: to right, var(--dash);
-		--top-period: var(--dash-period);
-		--top-width: var(--dash-width);
-		--top-gradient: to right, rgba(0, 0, 0, 0) 0,
-			rgba(0, 0, 0, 0) var(--length-1),
-			var(--background-color) var(--length-1);
-
-		--bottom-dash: to left, var(--dash);
-		--bottom-period: var(--dash-period);
-		--bottom-width: var(--dash-width);
-		--bottom-gradient: to left, rgba(0, 0, 0, 0) 0,
-			rgba(0, 0, 0, 0) var(--length-2),
-			var(--background-color) var(--length-2);
-		--right-dash: to top, var(--dash);
-		--right-period: var(--dash-period);
-		--right-width: var(--dash-width);
-		--right-gradient: to top, rgba(0, 0, 0, 0) 0,
-			rgba(0, 0, 0, 0) var(--length-2),
-			var(--background-color) var(--length-2);
+	svg line {
+		stroke-dasharray: var(--line-dasharray);
+		fill: none;
+		stroke-width: var(--dashed-line-width);
+		stroke: var(--solid-line-color);
 	}
 
 	.main-item {

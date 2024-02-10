@@ -4,11 +4,10 @@
 body {
     --background-color: rgba(0, 0, 0, 1);
     --solid-line-color: rgb(64, 64, 64);
-    --dashed-line-color: var(--solid-line-color);
+    --dashed-line-color: rgb(128, 128, 128);
 
-    --dash: var(--dashed-line-color) 50%, rgba(255, 255, 255, 0) 50%;
-    --dash-period: 5px;
-    --dash-width: 1px;
+    --line-dasharray: 2.5 2.5;
+    --dashed-line-width: 1px;
 
     color: white;
     background-color: var(--background-color);
