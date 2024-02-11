@@ -4,6 +4,60 @@
 	import Footer from "$lib/Footer.svelte";
 	import MainItem from "$lib/MainItem.svelte";
 	import HeaderTitle from "$lib/HeaderTitle.svelte";
+	import { onMount } from "svelte";
+	import { tweened } from "svelte/motion";
+	import { cubicInOut } from "svelte/easing";
+	import viewport from "$lib/useViewportAction";
+
+	// --------------------- Section 1 ---------------------
+	const s1_w_ul_v1 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_w_ul_v2 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_w_ul_v3 = tweened(100, { duration: 500, easing: cubicInOut });
+	const s1_w_ul_v4 = tweened(100, { duration: 500, easing: cubicInOut });
+	const s1_c_ul_v1 = tweened(100, { duration: 500, easing: cubicInOut });
+	const s1_c_ul_v2 = tweened(0, { duration: 500, easing: cubicInOut });
+
+	const s1_cd_v1 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_cd_v2 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_cd_v3 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_cd_v4 = tweened(100, { duration: 500, easing: cubicInOut });
+
+	const s1_d2_v1 = tweened(0, { duration: 1000, easing: cubicInOut });
+	const s1_d2_v2 = tweened(100, { duration: 1000, easing: cubicInOut });
+	const s1_d1_v1 = tweened(0, { duration: 1000, easing: cubicInOut });
+	const s1_d1_v2 = tweened(0, { duration: 1000, easing: cubicInOut });
+	const s1_d1_v3 = tweened(0, { duration: 500, easing: cubicInOut });
+
+	onMount(async () => {
+		await Promise.all([s1_w_ul_v1.set(100), s1_w_ul_v3.set(0)]);
+		await Promise.all([s1_w_ul_v2.set(100), s1_w_ul_v4.set(0)]);
+		await Promise.all([s1_c_ul_v1.set(0), s1_c_ul_v2.set(100)]);
+	});
+	
+	onMount(async () => {
+		await s1_cd_v1.set(100);
+		await s1_cd_v2.set(3);
+		await Promise.all([s1_cd_v3.set(25), s1_cd_v4.set(75)]);
+
+		Promise.all([s1_d2_v1.set(100), s1_d2_v2.set(0)]);
+		await Promise.all([s1_d1_v1.set(100), s1_d1_v2.set(4.5)]);
+		await s1_d1_v3.set(25);
+	});
+
+	// --------------------- Section 2 ---------------------
+	const s2_w_about_v = tweened(0, { duration: 1000, easing: cubicInOut });
+	const s2_c_about_v1 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s2_c_about_v2 = tweened(100, { duration: 500, easing: cubicInOut });
+	const s2_d1_v = tweened(0, { duration: 500, easing: cubicInOut });
+	const s2_d3_v = tweened(0, { duration: 500, easing: cubicInOut });
+
+	async function animation_section2() {
+		await s2_w_about_v.set(8);
+		await s2_c_about_v1.set(100);
+		await s2_c_about_v2.set(0);
+		await s2_d1_v.set(7.5);
+		await s2_d3_v.set(100);
+	}
 </script>
 
 <div id="first-section">
@@ -15,75 +69,35 @@
 
 	<div class="dashed-1">
 		<svg xmlns="http://www.w3.org/2000/svg">
-			<line
-				x1="100%"
-				y1="0"
-				x2="100%"
-				y2="100%"
-				style="stroke: var(--solid-line-color);"
-			/>
-			<line
-				x1="calc(100% - 4.5rem)"
-				y1="0"
-				x2="100%"
-				y2="0"
-				style="stroke: var(--solid-line-color);"
-			/>
-			<linearGradient
-				id="first-section-dashed-1-lg"
-				gradientUnits="userSpaceOnUse"
-				x1="0"
-				y1="0"
-				x2="25%"
-				y2="0"
-			>
+			<line x1="100%" y1="0" x2="100%" y2="{$s1_d1_v1}%" />
+			<line x1="calc(100% - {$s1_d1_v2}rem)" y1="0" x2="100%" y2="0" />
+			<linearGradient id="first-section-dashed-1-lg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25%" y2="0">
 				<stop offset="0" />
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
-			<line
-				x1="0"
-				y1="0"
-				x2="25%"
-				y2="0"
-				style="stroke: url(#first-section-dashed-1-lg);"
-			/>
+			<line x1="0" y1="0" x2="{$s1_d1_v3}%" y2="0" style="stroke: url(#first-section-dashed-1-lg);" />
 		</svg>
 	</div>
 
 	<div class="dashed-2">
 		<svg>
-			<line x1="0" y1="100%" x2="100%" y2="100%" />
-			<line x1="0" y1="100%" x2="0" y2="0" />
+			<line x1="0" y1="100%" x2="{$s1_d2_v1}%" y2="100%" />
+			<line x1="0" y1="100%" x2="0" y2="{$s1_d2_v2}%" />
 		</svg>
 	</div>
 
 	<div class="container">
-		<p id="slogan">
-			Если ты можешь это представить, ты можешь это достичь.
-		</p>
+		<p id="slogan">Если ты можешь это представить, ты можешь это достичь.</p>
 
 		<div class="container-dashed">
 			<svg>
-				<linearGradient
-					id="container-dashed-svg-1-lg-1"
-					gradientUnits="userSpaceOnUse"
-					x1="0"
-					y1="0"
-					x2="25%"
-					y2="0"
-				>
+				<linearGradient id="cd-svg-1-lg-1" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="25%" y2="0">
 					<stop offset="0" />
 					<stop offset="100%" style="stop-opacity: 0" />
 				</linearGradient>
-				<line
-					x1="0"
-					x2="25%"
-					y1="100%"
-					y2="100%"
-					style="stroke: url(#container-dashed-svg-1-lg-1);"
-				/>
+				<line x1="0" x2="{$s1_cd_v3}%" y1="100%" y2="100%" style="stroke: url(#cd-svg-1-lg-1);" />
 				<linearGradient
-					id="container-dashed-svg-1-lg-2"
+					id="cd-svg-1-lg-2"
 					gradientUnits="userSpaceOnUse"
 					x1="100%"
 					y1="0"
@@ -96,84 +110,42 @@
 				<line
 					x1="100%"
 					y1="100%"
-					x2="calc(100% - 3rem)"
+					x2="calc(100% - {$s1_cd_v2}rem)"
 					y2="100%"
-					style="stroke: url(#container-dashed-svg-1-lg-2);"
+					style="stroke: url(#cd-svg-1-lg-2);"
 				/>
-				<line
-					x1="100%"
-					y1="100%"
-					x2="100%"
-					y2="0"
-					style="stroke: var(--solid-line-color);"
-				/>
+				<line x1="100%" y1="0" x2="100%" y2="{$s1_cd_v1}%" />
 			</svg>
 			<svg>
-				<linearGradient
-					id="container-dashed-svg-2-lg-1"
-					gradientUnits="userSpaceOnUse"
-					x1="100%"
-					y1="0"
-					x2="75%"
-					y2="0"
-				>
+				<linearGradient id="cd-svg-2-lg-1" gradientUnits="userSpaceOnUse" x1="100%" y1="0" x2="75%" y2="0">
 					<stop offset="0" />
 					<stop offset="100%" style="stop-opacity: 0" />
 				</linearGradient>
-				<line
-					x1="75%"
-					x2="100%"
-					y1="0"
-					y2="0"
-					style="stroke: url(#container-dashed-svg-2-lg-1);"
-				/>
-				<linearGradient
-					id="container-dashed-svg-2-lg-2"
-					gradientUnits="userSpaceOnUse"
-					x1="0"
-					y1="0"
-					x2="3rem"
-					y2="0"
-				>
+				<line x1="{$s1_cd_v4}%" x2="100%" y1="0" y2="0" style="stroke: url(#cd-svg-2-lg-1);" />
+				<linearGradient id="cd-svg-2-lg-2" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="3rem" y2="0">
 					<stop offset="0" />
 					<stop offset="100%" style="stop-opacity: 0" />
 				</linearGradient>
-				<line
-					x1="0"
-					y1="0"
-					x2="3rem"
-					y2="0"
-					style="stroke: url(#container-dashed-svg-2-lg-2);"
-				/>
+				<line x1="0" y1="0" x2="{$s1_cd_v2}rem" y2="0" style="stroke: url(#cd-svg-2-lg-2);" />
 			</svg>
 		</div>
 
 		<div class="wrap-container-ul">
 			<div class="container-ul">
 				<svg class="svg-1" xmlns="http://www.w3.org/2000/svg">
-					<linearGradient
-						id="container-ul-lg-1"
-						gradientUnits="userSpaceOnUse"
-						x1="100%"
-						y1="100%"
-						x2="0"
-						y2="100%"
-					>
+					<linearGradient id="c-ul-lg-1" gradientUnits="userSpaceOnUse" x1="100%" y1="100%" x2="0" y2="100%">
 						<stop offset="0" />
 						<stop offset="70%" style="stop-opacity: 0" />
 					</linearGradient>
-					<line
-						x1="0"
-						y1="0"
-						x2="100%"
-						y2="0"
-						style="stroke: url(#container-ul-lg-1);"
-					/>
+					<line x1="{$s1_c_ul_v1}%" y1="0" x2="100%" y2="0" style="stroke: url(#c-ul-lg-1);" />
 				</svg>
 
 				<div class="wrap-ul">
 					<svg xmlns="http://www.w3.org/2000/svg">
-						<rect x="0" y="0" width="100%" height="100%" />
+						<line x1="0" y1="0" x2="0" y2="{$s1_w_ul_v1}%" />
+						<line x1="0" y1="100%" x2="{$s1_w_ul_v2}%" y2="100%" />
+						<line x1="100%" y1="100%" x2="100%" y2="{$s1_w_ul_v3}%" />
+						<line x1="100%" y1="0" x2="{$s1_w_ul_v4}%" y2="0" />
 					</svg>
 					<ul>
 						<li>
@@ -189,24 +161,11 @@
 				</div>
 
 				<svg class="svg-2" xmlns="http://www.w3.org/2000/svg">
-					<linearGradient
-						id="container-ul-lg-2"
-						gradientUnits="userSpaceOnUse"
-						x1="0"
-						y1="100%"
-						x2="100%"
-						y2="100%"
-					>
+					<linearGradient id="c-ul-lg-2" gradientUnits="userSpaceOnUse" x1="0" y1="100%" x2="100%" y2="100%">
 						<stop offset="0" />
 						<stop offset="70%" style="stop-opacity: 0" />
 					</linearGradient>
-					<line
-						x1="0"
-						y1="100%"
-						x2="100%"
-						y2="100%"
-						style="stroke: url(#container-ul-lg-2);"
-					/>
+					<line x1="0" y1="100%" x2="{$s1_c_ul_v2}%" y2="100%" style="stroke: url(#c-ul-lg-2);" />
 				</svg>
 			</div>
 		</div>
@@ -218,10 +177,10 @@
 	<div class="dashed-1">
 		<svg>
 			<linearGradient
-				id="second-section-dashed-1-lg-1"
+				id="s2-dashed-1-lg-1"
 				gradientUnits="userSpaceOnUse"
 				x1="0"
-				x2="7.5rem"
+				x2="{$s2_d1_v}rem"
 				y1="0"
 				y2="0"
 			>
@@ -229,118 +188,72 @@
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
 			<linearGradient
-				id="second-section-dashed-1-lg-2"
+				id="s2-dashed-1-lg-2"
 				gradientUnits="userSpaceOnUse"
 				x1="0"
 				x2="0"
 				y1="0"
-				y2="7.5rem"
+				y2="{$s2_d1_v}rem"
 			>
 				<stop offset="0" />
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
 			<linearGradient
-				id="second-section-dashed-1-lg-3"
+				id="s2-dashed-1-lg-3"
 				gradientUnits="userSpaceOnUse"
 				x1="0"
 				x2="0"
 				y1="100%"
-				y2="calc(100% - 7.5rem)"
+				y2="calc(100% - {$s2_d1_v}rem)"
 			>
 				<stop offset="0" />
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
-			<line
-				x1="0"
-				x2="7.5rem"
-				y1="0"
-				y2="0"
-				style="stroke: url(#second-section-dashed-1-lg-1);"
-			/>
-			<line
-				x1="0"
-				x2="0"
-				y1="0"
-				y2="7.5rem"
-				style="stroke: url(#second-section-dashed-1-lg-2);"
-			/>
-			<line
-				x1="0"
-				x2="0"
-				y1="100%"
-				y2="calc(100% - 7.5rem)"
-				style="stroke: url(#second-section-dashed-1-lg-3);"
-			/>
+			<line x1="0" x2="7.5rem" y1="0" y2="0" style="stroke: url(#s2-dashed-1-lg-1);" />
+			<line x1="0" x2="0" y1="0" y2="7.5rem" style="stroke: url(#s2-dashed-1-lg-2);" />
+			<line x1="0" x2="0" y1="100%" y2="calc(100% - 7.5rem)" style="stroke: url(#s2-dashed-1-lg-3);" />
 		</svg>
 	</div>
 
 	<div class="dashed-2">
 		<svg>
-			<linearGradient
-				id="second-section-dashed-2-lg"
-				gradientUnits="userSpaceOnUse"
-				x1="100%"
-				x2="0"
-				y1="0"
-				y2="0"
-			>
+			<linearGradient id="s2-dashed-2-lg" gradientUnits="userSpaceOnUse" x1="100%" x2="0" y1="0" y2="0">
 				<stop offset="0" />
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
-			<line
-				x1="100%"
-				x2="0"
-				y1="0"
-				y2="0"
-				style="stroke: url(#second-section-dashed-2-lg);"
-			/>
+			<line x1="100%" x2="{$s2_c_about_v2}%" y1="0" y2="0" style="stroke: url(#s2-dashed-2-lg);" />
 		</svg>
 	</div>
 
 	<div class="dashed-3">
 		<svg>
-			<circle cx="100%" cy="0" r="100%"/>
+			<circle cx="100%" cy="0" r="{$s2_d3_v}%" />
 		</svg>
 	</div>
 
 	<div id="container-about">
 		<svg class="svg-1">
-			<line x1="0" x2="0" y1="0" y2="100%" />
+			<line x1="0" x2="0" y1="0" y2="{$s2_c_about_v1}%" />
 		</svg>
 		<div id="wrap-about">
 			<svg>
-				<line x1="0" x2="8rem" y1="0" y2="0" />
-				<line x1="0" x2="0" y1="0" y2="8rem" />
-				<line x1="100%" x2="calc(100% - 8rem)" y1="100%" y2="100%" />
-				<line x1="100%" x2="100%" y1="100%" y2="calc(100% - 8rem)" />
+				<line x1="0" x2="{$s2_w_about_v}rem" y1="0" y2="0" />
+				<line x1="0" x2="0" y1="0" y2="{$s2_w_about_v}rem" />
+				<line x1="100%" x2="calc(100% - {$s2_w_about_v}rem)" y1="100%" y2="100%" />
+				<line x1="100%" x2="100%" y1="100%" y2="calc(100% - {$s2_w_about_v}rem)" />
 			</svg>
-			<p id="about" lang="ru">
-				Привет, дорогой читатель. Меня зовут Андрей. Мне 22 года, я
-				студент, которому интересно познавать новое и делиться этим с
-				другими. Это мой личный сайт, на котором я выкладываю свои
-				статьи, иногда курсы, блоги и просто размышления на интересные
-				для меня темы. Заваривай чай и присаживайся поудобнее.
+			<p id="about" lang="ru" use:viewport on:enterViewport={() => animation_section2()}>
+				Привет, дорогой читатель. Меня зовут Андрей. Мне 22 года, я студент, которому интересно познавать новое
+				и делиться этим с другими. Это мой личный сайт, на котором я выкладываю свои статьи, иногда курсы, блоги
+				и просто размышления на интересные для меня темы. Заваривай чай и присаживайся поудобнее.
 			</p>
 		</div>
 		<svg class="svg-2">
-			<linearGradient
-				id="container-about-svg-2-lg"
-				gradientUnits="userSpaceOnUse"
-				x1="100%"
-				y1="100%"
-				x2="100%"
-				y2="50%"
-			>
+			<linearGradient id="c-about-svg-2-lg" gradientUnits="userSpaceOnUse" x1="100%" y1="100%" x2="100%" y2="50%">
 				<stop offset="0" />
 				<stop offset="100%" style="stop-opacity: 0" />
 			</linearGradient>
-			<line
-				x1="100%"
-				x2="100%"
-				y1="100%"
-				y2="0"
-				style="stroke: url(#container-about-svg-2-lg);"
-			/>
+			<line x1="100%" x2="100%" y1="100%" y2="{$s2_c_about_v2}%" style="stroke: url(#c-about-svg-2-lg);" />
 		</svg>
 	</div>
 </div>
@@ -348,16 +261,11 @@
 <div class="h-line" />
 <div id="third-section">
 	<MainItem src="test.png" alt="test">
-		<h2>
-			New! Раскрой свои навыки программирования на этом бесплатном курсе
-			по Python
-		</h2>
+		<h2>New! Раскрой свои навыки программирования на этом бесплатном курсе по Python</h2>
 		<p>
-			Python - это мощный язык программирования, находящий свое применение
-			в web-разработке, в научных вычислениях, как скриптовый язык и в
-			других самых разных областях. Этот язык невероятно удобен и
-			лаконичен, и поэтому является одним из самых популярных и
-			востребованных языков в современном IT.
+			Python - это мощный язык программирования, находящий свое применение в web-разработке, в научных
+			вычислениях, как скриптовый язык и в других самых разных областях. Этот язык невероятно удобен и лаконичен,
+			и поэтому является одним из самых популярных и востребованных языков в современном IT.
 		</p>
 	</MainItem>
 </div>
@@ -368,7 +276,7 @@
 <style>
 	.h-line {
 		width: 100%;
-		height: 1px;
+		height: var(--solid-line-width);
 		background-color: var(--solid-line-color);
 	}
 
@@ -377,6 +285,22 @@
 		top: 0;
 		width: 100%;
 		z-index: 1;
+	}
+
+	svg line {
+		fill: none;
+		stroke: var(--solid-line-color);
+		stroke-width: var(--solid-line-width);
+	}
+
+	linearGradient stop {
+		stop-color: var(--solid-line-color);
+	}
+
+	svg circle {
+		fill: none;
+		stroke-width: var(--solid-line-width);
+		stroke: var(--solid-line-color);
 	}
 
 	/* ---------------------- First Section ---------------------- */
@@ -441,32 +365,15 @@
 		height: 100%;
 	}
 
-	#first-section .wrap-ul svg rect {
-		fill: none;
-		stroke: var(--dashed-line-color);
-		stroke-width: var(--dashed-line-width);
-		stroke-dasharray: var(--line-dasharray);
-	}
-
-	#first-section .container-ul svg line {
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-		stroke-dasharray: var(--line-dasharray);
-	}
-
 	#first-section .container-ul .svg-1 {
-		height: var(--dashed-line-width);
+		height: var(--solid-line-width);
 		width: 100%;
 	}
 
 	#first-section .container-ul .svg-2 {
-		height: var(--dashed-line-width);
+		height: var(--solid-line-width);
 		width: 100%;
 		align-self: end;
-	}
-
-	#first-section .container-ul linearGradient stop {
-		stop-color: var(--dashed-line-color);
 	}
 
 	#first-section .dashed-1 {
@@ -480,16 +387,6 @@
 	#first-section .dashed-1 svg {
 		width: 100%;
 		height: 100%;
-	}
-
-	#first-section .dashed-1 svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-	}
-
-	#first-section .dashed-1 svg linearGradient stop {
-		stop-color: var(--dashed-line-color);
 	}
 
 	#first-section .dashed-2 {
@@ -511,13 +408,6 @@
 		height: 100%;
 	}
 
-	#first-section .dashed-2 svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-		stroke: var(--solid-line-color);
-	}
-
 	#first-section .container-dashed {
 		height: 3rem;
 		display: grid;
@@ -528,16 +418,6 @@
 	#first-section .container-dashed svg {
 		height: 100%;
 		width: 100%;
-	}
-
-	#first-section .container-dashed svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-	}
-
-	#first-section .container-dashed svg linearGradient stop {
-		stop-color: var(--dashed-line-color);
 	}
 
 	/* ---------------------- Second Section ---------------------- */
@@ -572,13 +452,6 @@
 		width: 100%;
 	}
 
-	#second-section #wrap-about svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-		stroke: var(--solid-line-color);
-	}
-
 	#second-section #about {
 		font-size: 2rem;
 		text-align: justify;
@@ -591,31 +464,14 @@
 
 	#second-section #container-about .svg-1 {
 		height: var(--margin-top);
-		width: var(--dashed-line-width);
+		width: var(--solid-line-width);
 		padding-left: 2rem;
-	}
-
-	#second-section #container-about .svg-1 line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-		stroke: var(--solid-line-color);
 	}
 
 	#second-section #container-about .svg-2 {
 		height: var(--margin-bottom);
 		width: 100%;
 		align-self: end;
-	}
-
-	#second-section #container-about .svg-2 line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-	}
-
-	#second-section #container-about .svg-2 linearGradient stop {
-		stop-color: var(--dashed-line-color);
 	}
 
 	#second-section .dashed-1 {
@@ -637,16 +493,6 @@
 		height: 100%;
 	}
 
-	#second-section .dashed-1 svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-	}
-
-	#second-section .dashed-1 svg linearGradient stop {
-		stop-color: var(--dashed-line-color);
-	}
-
 	#second-section .dashed-2 {
 		position: absolute;
 		bottom: 0;
@@ -666,16 +512,6 @@
 		height: 100%;
 	}
 
-	#second-section .dashed-2 svg line {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-	}
-
-	#second-section .dashed-2 svg linearGradient stop {
-		stop-color: var(--dashed-line-color);
-	}
-
 	#second-section .dashed-3 {
 		position: absolute;
 		top: 0;
@@ -693,13 +529,6 @@
 	#second-section .dashed-3 svg {
 		width: 100%;
 		height: 100%;
-	}
-
-	#second-section .dashed-3 svg circle {
-		stroke-dasharray: var(--line-dasharray);
-		fill: none;
-		stroke-width: var(--dashed-line-width);
-		stroke: var(--solid-line-color);
 	}
 
 	/* ---------------------- Third Section ---------------------- */

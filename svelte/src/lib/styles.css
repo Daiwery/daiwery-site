@@ -3,11 +3,9 @@
 
 body {
     --background-color: rgba(0, 0, 0, 1);
-    --solid-line-color: rgb(64, 64, 64);
-    --dashed-line-color: rgb(128, 128, 128);
 
-    --line-dasharray: 2.5 2.5;
-    --dashed-line-width: 1px;
+    --solid-line-color: rgb(64, 64, 64);
+    --solid-line-width: 1px;
 
     color: white;
     background-color: var(--background-color);

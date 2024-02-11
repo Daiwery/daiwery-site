@@ -1,14 +1,25 @@
 <script>
+	import { tweened } from "svelte/motion";
+	import { cubicInOut } from "svelte/easing";
+	import viewport from "$lib/useViewportAction";
+
 	export let src = "";
 	export let alt = "";
+
+	const v1 = tweened(0, { duration: 1000, easing: cubicInOut });
+	const v2 = tweened(0, { duration: 1000, easing: cubicInOut });
+
+	async function animation() {
+		await Promise.all([v1.set(5), v2.set(10)]);
+	}
 </script>
 
-<div class="wrapper-main-item">
+<div class="wrapper-main-item" use:viewport on:enterViewport={() => animation()}>
 	<svg>
-		<line x1="0" x2="5rem" y1="0" y2="0" />
-		<line x1="0" x2="0" y1="0" y2="5rem" />
-		<line x1="100%" x2="calc(100% - 10rem)" y1="100%" y2="100%" style="stroke-width: 2px"/>
-		<line x1="100%" x2="100%" y1="100%" y2="calc(100% - 10rem)" />
+		<line x1="0" x2="{$v1}rem" y1="0" y2="0" />
+		<line x1="0" x2="0" y1="0" y2="{$v1}rem" />
+		<line x1="100%" x2="calc(100% - {$v2}rem)" y1="100%" y2="100%" style="stroke-width: 2px" />
+		<line x1="100%" x2="100%" y1="100%" y2="calc(100% - {$v2}rem)" />
 	</svg>
 	<div class="main-item">
 		<img {src} class="item-img" {alt} />
@@ -45,9 +56,8 @@
 	}
 
 	svg line {
-		stroke-dasharray: var(--line-dasharray);
 		fill: none;
-		stroke-width: var(--dashed-line-width);
+		stroke-width: var(--solid-line-width);
 		stroke: var(--solid-line-color);
 	}
 
