@@ -3,30 +3,33 @@
 	import Header from "$lib/Header.svelte";
 	import Footer from "$lib/Footer.svelte";
 	import MainItem from "$lib/MainItem.svelte";
-	import HeaderTitle from "$lib/HeaderTitle.svelte";
 	import { onMount } from "svelte";
 	import { tweened } from "svelte/motion";
 	import { cubicInOut } from "svelte/easing";
-	import viewport from "$lib/useViewportAction";
+	import { viewport } from "$lib/utils/useViewportAction";
+	
+
+	const first_duration = 500;
+	const second_duration = 1000;
 
 	// --------------------- Section 1 ---------------------
-	const s1_w_ul_v1 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s1_w_ul_v2 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s1_w_ul_v3 = tweened(100, { duration: 500, easing: cubicInOut });
-	const s1_w_ul_v4 = tweened(100, { duration: 500, easing: cubicInOut });
-	const s1_c_ul_v1 = tweened(100, { duration: 500, easing: cubicInOut });
-	const s1_c_ul_v2 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_w_ul_v1 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s1_w_ul_v2 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s1_w_ul_v3 = tweened(100, { duration: first_duration, easing: cubicInOut });
+	const s1_w_ul_v4 = tweened(100, { duration: first_duration, easing: cubicInOut });
+	const s1_c_ul_v1 = tweened(100, { duration: first_duration, easing: cubicInOut });
+	const s1_c_ul_v2 = tweened(0, { duration: first_duration, easing: cubicInOut });
 
-	const s1_cd_v1 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s1_cd_v2 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s1_cd_v3 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s1_cd_v4 = tweened(100, { duration: 500, easing: cubicInOut });
+	const s1_cd_v1 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s1_cd_v2 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s1_cd_v3 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s1_cd_v4 = tweened(100, { duration: first_duration, easing: cubicInOut });
 
-	const s1_d2_v1 = tweened(0, { duration: 1000, easing: cubicInOut });
-	const s1_d2_v2 = tweened(100, { duration: 1000, easing: cubicInOut });
-	const s1_d1_v1 = tweened(0, { duration: 1000, easing: cubicInOut });
-	const s1_d1_v2 = tweened(0, { duration: 1000, easing: cubicInOut });
-	const s1_d1_v3 = tweened(0, { duration: 500, easing: cubicInOut });
+	const s1_d2_v1 = tweened(0, { duration: second_duration, easing: cubicInOut });
+	const s1_d2_v2 = tweened(100, { duration: second_duration, easing: cubicInOut });
+	const s1_d1_v1 = tweened(0, { duration: second_duration, easing: cubicInOut });
+	const s1_d1_v2 = tweened(0, { duration: second_duration, easing: cubicInOut });
+	const s1_d1_v3 = tweened(0, { duration: first_duration, easing: cubicInOut });
 
 	onMount(async () => {
 		await Promise.all([s1_w_ul_v1.set(100), s1_w_ul_v3.set(0)]);
@@ -45,11 +48,11 @@
 	});
 
 	// --------------------- Section 2 ---------------------
-	const s2_w_about_v = tweened(0, { duration: 1000, easing: cubicInOut });
-	const s2_c_about_v1 = tweened(0, { duration: 500, easing: cubicInOut });
-	const s2_c_about_v2 = tweened(100, { duration: 500, easing: cubicInOut });
-	const s2_d1_v = tweened(0, { duration: 500, easing: cubicInOut });
-	const s2_d3_v = tweened(0, { duration: 500, easing: cubicInOut });
+	const s2_w_about_v = tweened(0, { duration: second_duration, easing: cubicInOut });
+	const s2_c_about_v1 = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s2_c_about_v2 = tweened(100, { duration: first_duration, easing: cubicInOut });
+	const s2_d1_v = tweened(0, { duration: first_duration, easing: cubicInOut });
+	const s2_d3_v = tweened(0, { duration: first_duration, easing: cubicInOut });
 
 	async function animation_section2() {
 		await s2_w_about_v.set(8);
@@ -63,7 +66,9 @@
 <div id="first-section">
 	<div id="header">
 		<Header>
-			<HeaderTitle />
+			<div id="wrap-title">
+				<a href="/" id="title">Daiwery</a>
+			</div>			
 		</Header>
 	</div>
 
@@ -242,7 +247,7 @@
 				<line x1="100%" x2="calc(100% - {$s2_w_about_v}rem)" y1="100%" y2="100%" />
 				<line x1="100%" x2="100%" y1="100%" y2="calc(100% - {$s2_w_about_v}rem)" />
 			</svg>
-			<p id="about" lang="ru" use:viewport on:enterViewport={() => animation_section2()}>
+			<p id="about" lang="ru" use:viewport={0.9} on:enterViewport={() => animation_section2()}>
 				Привет, дорогой читатель. Меня зовут Андрей. Мне 22 года, я студент, которому интересно познавать новое
 				и делиться этим с другими. Это мой личный сайт, на котором я выкладываю свои статьи, иногда курсы, блоги
 				и просто размышления на интересные для меня темы. Заваривай чай и присаживайся поудобнее.
@@ -261,12 +266,12 @@
 <div class="h-line" />
 <div id="third-section">
 	<MainItem src="test.png" alt="test">
-		<h2>New! Раскрой свои навыки программирования на этом бесплатном курсе по Python</h2>
-		<p>
-			Python - это мощный язык программирования, находящий свое применение в web-разработке, в научных
-			вычислениях, как скриптовый язык и в других самых разных областях. Этот язык невероятно удобен и лаконичен,
-			и поэтому является одним из самых популярных и востребованных языков в современном IT.
-		</p>
+
+		## Бесплатный курс по Python
+
+		Python -- это мощный язык программирования, находящий свое применение в web-разработке, в научных
+		вычислениях, как скриптовый язык и в других самых разных областях.
+		
 	</MainItem>
 </div>
 
@@ -285,6 +290,18 @@
 		top: 0;
 		width: 100%;
 		z-index: 1;
+	}
+
+	#wrap-title {
+		display: flex;
+		align-items: center;
+	}
+
+	#title {
+		color: rgb(255, 255, 255);
+		font-size: calc(var(--header-height) - 2rem);
+		text-decoration: none;
+		font-family: "Caveat Variable";
 	}
 
 	svg line {

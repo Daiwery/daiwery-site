@@ -2,7 +2,7 @@
     <slot/>
 
     <a id="brand" href="/">
-        <img src="favicon.svg" alt="The main icon." />
+        <img src="/favicon.svg" alt="The main icon." />
     </a>
 
     <ul>
@@ -10,10 +10,9 @@
             <a href="/">Блог</a>
         </li>
         <li>
-            <a href="/">Курс</a>
+            <a href="/python">Курс</a>
         </li>
     </ul>
-
 </nav>
 <div class="h-line" />
 
@@ -42,9 +41,9 @@
     ul a {
         padding: 0 0 0 2rem;
         color: rgb(205, 205, 205);
-        font-size: 1rem;
+        font-size: 1.1rem;
         text-decoration: none;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
     }
 
     ul a:hover {
@@ -58,7 +57,7 @@
     }
 
     #brand img {
-        height: 2.5rem;
+        height: calc(var(--header-height) - 2rem);
         filter: invert(1);
     }
 

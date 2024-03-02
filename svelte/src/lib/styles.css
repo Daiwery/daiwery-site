@@ -1,12 +1,17 @@
 @import '@fontsource-variable/caveat';
 @import '@fontsource/source-sans-pro';
 
+
 body {
-    --background-color: rgba(0, 0, 0, 1);
+    /* --------- Colors --------- */
+    --background-color: rgb(16, 16, 16);
+    --solid-line-color: rgb(96, 96, 96);
 
-    --solid-line-color: rgb(64, 64, 64);
+    /* --------- Units --------- */
     --solid-line-width: 1px;
+    --header-height: 4.5rem;
 
+    /* --------- Property --------- */
     color: white;
     background-color: var(--background-color);
     font-family: 'Source Sans Pro', sans-serif;

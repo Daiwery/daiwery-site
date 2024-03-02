@@ -2,9 +2,9 @@
     <a id="privacy" href="/">Политика конфиденциальности</a>
     <p id="copyright">Все права защищены © 2024 Daiwery</p>
     <div id="contacts">
-        <img src="telegram_icon.svg" alt="Telegram." />
-        <img src="email_icon.svg" alt="Mail." />
-        <img src="github_icon.svg" alt="Github." />
+        <img src="/telegram_icon.svg" alt="Telegram." />
+        <img src="/email_icon.svg" alt="Mail." />
+        <img src="/github_icon.svg" alt="Github." />
     </div>
 </footer>
 

@@ -11,6 +11,7 @@ resource "yandex_storage_bucket" "storage" {
 
     website {
         index_document = "index.html"
+        error_document = "index.html"
     }
 
     https {

@@ -56,9 +56,14 @@ for key in to_upload:
 
     path = Path(args.new).joinpath(key)
     content_type = mimetypes.guess_type(str(key))[0]
+
+    ExtraArgs = None
+    if content_type is not None:
+        ExtraArgs={"ContentType": content_type}
+
     s3.upload_file(
         path, args.bucket, str(key),
-        ExtraArgs={"ContentType": content_type}
+        ExtraArgs=ExtraArgs
     )
 
 os.system(f"rm -r {args.old}")

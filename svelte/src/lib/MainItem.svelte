@@ -1,20 +1,20 @@
 <script>
 	import { tweened } from "svelte/motion";
 	import { cubicInOut } from "svelte/easing";
-	import viewport from "$lib/useViewportAction";
+	import { viewport } from "$lib/utils/useViewportAction";
 
 	export let src = "";
 	export let alt = "";
 
-	const v1 = tweened(0, { duration: 1000, easing: cubicInOut });
-	const v2 = tweened(0, { duration: 1000, easing: cubicInOut });
+	const v1 = tweened(0, { duration: 500, easing: cubicInOut });
+	const v2 = tweened(0, { duration: 500, easing: cubicInOut });
 
 	async function animation() {
 		await Promise.all([v1.set(5), v2.set(10)]);
 	}
 </script>
 
-<div class="wrapper-main-item" use:viewport on:enterViewport={() => animation()}>
+<div class="wrapper-main-item" use:viewport={0.9} on:enterViewport={() => animation()}>
 	<svg>
 		<line x1="0" x2="{$v1}rem" y1="0" y2="0" />
 		<line x1="0" x2="0" y1="0" y2="{$v1}rem" />
@@ -40,7 +40,7 @@
 		display: flex;
 		justify-content: center;
 		width: auto;
-		max-width: 80rem;
+		max-width: 70rem;
 		margin: 1.5rem 1rem;
 		position: relative;
 	}
@@ -82,21 +82,24 @@
 
 	.main-item .item-text :global(h2) {
 		font-size: 1.8rem;
-		font-weight: bold;
+		font-weight: 900;
+		font-style: normal;
 		margin-top: 0;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 	}
 
 	.main-item .item-text :global(p) {
 		font-size: 1.3rem;
-		color: rgb(140, 140, 140);
+		color: rgb(161, 161, 161);
+		font-weight: 200;
+		font-style: normal;
 		margin-top: 0;
-		margin-bottom: 1rem;
+		margin-bottom: 2rem;
 		text-align: justify;
 		hyphens: auto;
 	}
 
-	@media (max-width: 75rem) {
+	@media (max-width: 65rem) {
 		.main-item .item-text :global(h2) {
 			font-size: 1.5rem;
 		}
@@ -106,7 +109,7 @@
 		}
 	}
 
-	@media (max-width: 71rem) {
+	@media (max-width: 61rem) {
 		.wrapper-main-item {
 			margin: 0.75rem 0.5rem;
 		}
@@ -134,6 +137,8 @@
 	.main-item .item-text .item-link a {
 		color: rgb(255, 255, 255);
 		font-size: 1.3rem;
+		font-weight: 400;
+		font-style: normal;
 		text-decoration: none;
 		margin: 0;
 	}

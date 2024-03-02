@@ -1,6 +1,6 @@
 let intersectionObserver;
 
-function ensureIntersectionObserver() {
+function ensureIntersectionObserver(threshold) {
 	if (intersectionObserver) return;
 	intersectionObserver = new IntersectionObserver(
 		(entries) => {
@@ -9,12 +9,12 @@ function ensureIntersectionObserver() {
 				const eventName = entry.isIntersecting ? 'enterViewport' : 'exitViewport';
 				entry.target.dispatchEvent(new CustomEvent(eventName));
 			});
-		}, {threshold: 0.9}
+		}, {threshold: threshold}
 	);
 }
 
-export default function viewport(element) {
-	ensureIntersectionObserver();
+export function viewport(element, threshold) {
+	ensureIntersectionObserver(threshold);
 	intersectionObserver.observe(element);
 	return {
 		destroy() {
@@ -22,3 +22,4 @@ export default function viewport(element) {
 		}
 	}
 }
+

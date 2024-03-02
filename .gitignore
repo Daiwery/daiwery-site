@@ -18,6 +18,10 @@ package/
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 svelte/static/
+*.md
 
 # Python
 __pycache__/
+
+# Special md
+!README.md
